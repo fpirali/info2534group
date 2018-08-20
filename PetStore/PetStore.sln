@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetStore", "PetStore\PetStore.csproj", "{70631824-B957-4F93-BF48-43AE8E4A6568}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetStore", "PetStore\PetStore.csproj", "{B472AD81-9920-468E-BCA1-B76D2CE4C763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{70631824-B957-4F93-BF48-43AE8E4A6568}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70631824-B957-4F93-BF48-43AE8E4A6568}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70631824-B957-4F93-BF48-43AE8E4A6568}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70631824-B957-4F93-BF48-43AE8E4A6568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B472AD81-9920-468E-BCA1-B76D2CE4C763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B472AD81-9920-468E-BCA1-B76D2CE4C763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B472AD81-9920-468E-BCA1-B76D2CE4C763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B472AD81-9920-468E-BCA1-B76D2CE4C763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2A5378D2-3503-4A6C-AFB2-DBC581516B8D}
+		SolutionGuid = {59B56F1E-4DE1-4768-B27E-48C5F62DAF8B}
 	EndGlobalSection
 EndGlobal
