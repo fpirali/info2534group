@@ -260,3 +260,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/PetStore/PetStore/Content
+/PetStore/PetStore/Scripts/esm
+/PetStore/PetStore/Scripts/umd
+/PetStore/PetStore/Scripts
