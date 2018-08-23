@@ -202,18 +202,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808222333002_InitialCreate.cs" />
-    <Compile Include="Migrations\201808222333002_InitialCreate.Designer.cs">
-      <DependentUpon>201808222333002_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808230000391_Add Category class.cs" />
-    <Compile Include="Migrations\201808230000391_Add Category class.Designer.cs">
-      <DependentUpon>201808230000391_Add Category class.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808230010523_Product.cs" />
-    <Compile Include="Migrations\201808230010523_Product.Designer.cs">
-      <DependentUpon>201808230010523_Product.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -295,25 +283,12 @@
     <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808230010523_Product.resx">
-      <DependentUpon>201808230010523_Product.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808222333002_InitialCreate.resx">
-      <DependentUpon>201808222333002_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808230000391_Add Category class.resx">
-      <DependentUpon>201808230000391_Add Category class.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

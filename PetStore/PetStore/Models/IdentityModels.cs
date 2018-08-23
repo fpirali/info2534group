@@ -9,7 +9,7 @@ namespace PetStore.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public DbSet<ProductModels> Activities { get; set; }
+        
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -22,10 +22,12 @@ namespace PetStore.Models
     
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        DbSet<Category> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Transaction> Transacations { get; set; }
+        public DbSet<ProductModels> ProductModels { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("petstore4", throwIfV1Schema: false)
         {
         }
 
@@ -33,7 +35,5 @@ namespace PetStore.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<PetStore.Models.ProductModels> ProductModels { get; set; }
     }
 }

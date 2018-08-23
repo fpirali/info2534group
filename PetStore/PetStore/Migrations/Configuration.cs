@@ -1,8 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace PetStore.Migrations
 {
     using System;
@@ -15,8 +10,6 @@ namespace PetStore.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "PetStore.Models.ApplicationDbContext";
         }
 
         protected override void Seed(PetStore.Models.ApplicationDbContext context)

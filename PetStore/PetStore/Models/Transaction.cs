@@ -23,6 +23,5 @@ namespace PetStore.Models
         public decimal Total { get; set; }
 
         public bool Paid { get; set; }
-
     }
 }
