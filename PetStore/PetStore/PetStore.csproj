@@ -210,7 +210,6 @@
     <Compile Include="Migrations\201808230000391_Add Category class.Designer.cs">
       <DependentUpon>201808230000391_Add Category class.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\201808230010523_Product.cs" />
     <Compile Include="Migrations\201808230010523_Product.Designer.cs">
       <DependentUpon>201808230010523_Product.cs</DependentUpon>

@@ -17,7 +17,7 @@ namespace PetStore.Models
         public int CustomerID { get; set; }
 
         [Required]
-        public List<Product> Products { get; set; }
+        public List<ProductModels> Products { get; set; }
 
         [Required]
         public decimal Total { get; set; }
