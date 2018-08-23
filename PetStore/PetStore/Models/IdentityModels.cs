@@ -22,6 +22,8 @@ namespace PetStore.Models
     
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        DbSet<Category> Categories { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
