@@ -9,7 +9,7 @@ namespace PetStore.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "PetStore.Models.ApplicationDbContext";
         }
 
