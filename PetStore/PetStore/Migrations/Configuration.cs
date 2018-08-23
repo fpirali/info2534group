@@ -9,7 +9,8 @@ namespace PetStore.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "PetStore.Models.ApplicationDbContext";
         }
 
         protected override void Seed(PetStore.Models.ApplicationDbContext context)
