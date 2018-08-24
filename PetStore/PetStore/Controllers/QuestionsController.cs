@@ -48,6 +48,8 @@ namespace PetStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Date,Name,Email,Subject,Message")] Question question)
         {
+            question.Date = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.Questions.Add(question);

@@ -13,8 +13,7 @@ namespace PetStore.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [Required(ErrorMessage = "Your name is required.")]
         [Display(Name = "Your name")]
