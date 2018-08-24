@@ -21,5 +21,12 @@ namespace PetStore.Models
         [Required]
         [MaxLength(255)]
         public string Description { get; set; }
+
+        // 20180824 added category id and price to model - kelsey
+        [Required]
+        public int CategoryId { get; set; }
+
+        [Required]
+        public decimal Price { get; set; }
     }
 }
