@@ -28,5 +28,14 @@ namespace PetStore.Models
 
         [Required]
         public decimal Price { get; set; }
+
+        // 2018/0827 added image file path and on sale flag to model - kelsey
+        [Required]
+        [Display(Name = "The image file path for the product.")]
+        public string ImageFilePath { get; set; }
+
+        [Required]
+        [Display(Name = "Is the product currently on sale?")]
+        public bool OnSale { get; set; }
     }
 }

@@ -27,10 +27,9 @@ namespace PetStore.Models
         public string Subject { get; set; }
 
         [Required(ErrorMessage = "The message body is required.")]
-        [Display(Name = "Type your question in the text box.")]
+        [Display(Name = "Message content.", Description = "Type your question in the text box.")]
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }
-
 
     }
 }

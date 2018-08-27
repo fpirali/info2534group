@@ -14,8 +14,8 @@ namespace PetStore.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        //// this will correspond with the customer id
-        //public int CustomerId { get; set; }
+        // this will correspond with the customer id
+        public int CustomerId { get; set; }
 
         //// this will correspond with the transaction id??
         //public int TransactionId { get; set; }

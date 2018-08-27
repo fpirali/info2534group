@@ -203,9 +203,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Migrations\201808242121092_AddCustomerAndOrderModels.cs" />
     <Compile Include="Migrations\201808242121092_AddCustomerAndOrderModels.Designer.cs">
       <DependentUpon>201808242121092_AddCustomerAndOrderModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808271319208_AddImageLocationAndSaleFlagToProductModel.cs" />
+    <Compile Include="Migrations\201808271319208_AddImageLocationAndSaleFlagToProductModel.Designer.cs">
+      <DependentUpon>201808271319208_AddImageLocationAndSaleFlagToProductModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -306,6 +311,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808242121092_AddCustomerAndOrderModels.resx">
       <DependentUpon>201808242121092_AddCustomerAndOrderModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808271319208_AddImageLocationAndSaleFlagToProductModel.resx">
+      <DependentUpon>201808271319208_AddImageLocationAndSaleFlagToProductModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
