@@ -16,13 +16,11 @@ namespace PetStore.Models
 
         // 20180827 added error message - kelsey
         [Required(ErrorMessage = "The name of the product is required.")]
-        [MaxLength(255)]
         public string Name { get; set; }
 
         // 20180827 added error message and multi-line data type - kelsey
         [Required(ErrorMessage = "The description of the product is required.")]
         [DataType(DataType.MultilineText)]
-        [MaxLength(255)]
         public string Description { get; set; }
 
         // 20180824 added category id and price to model - kelsey
@@ -37,11 +35,20 @@ namespace PetStore.Models
         [Required(ErrorMessage = "An image of the product is required.")]
         [Display(Name = "Image url")]
         public string ImageFilePath { get; set; }
-
-        [Required(ErrorMessage = "You need to check one of the options.")]
-        [Display(Name = "Is on sale", Description = "Is the product currently on sale?")]
+        
+        [Display(Name = "Is on sale", Description = "On sale")]
         public bool OnSale { get; set; }
 
+        // 20180828 added markdown field to model - kelsey
+        [Display(Name = "Percent markdown")]
+        public decimal Markdown { get; set; }
+
         public Category Category { get; set; }
+
+        // 20180828 added field for pet type id 
+        [Required(ErrorMessage = "The type of pet this is intended for is required.")]
+        [Display(Name = "Type of pet")]
+        public int PetId { get; set; }
+        public Pet Pet { get; set; }
     }
 }

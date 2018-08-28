@@ -10,17 +10,11 @@ namespace PetStore.Helpers
 {
     public static class HtmlHelper
     {
-        /*
-            // 20180827 created the DescriptionFor html helper //
-         * this will get the model's display description attribute and insert it into a label tag
-         * it will create the string of html that will render the label using the display description
-         * instead of having to be limited to using the display name
-        */
+        // this will output the property's display description as an html label 
         public static string DescriptionFor<TModel, TValue>(
             this HtmlHelper<TModel> self,
             Expression<Func<TModel, TValue>> expression,
-            object htmlAttributes
-        )
+            object htmlAttributes)
         {
             var builder = new TagBuilder("label");
             var metadata = ModelMetadata.FromLambdaExpression(expression, self.ViewData);

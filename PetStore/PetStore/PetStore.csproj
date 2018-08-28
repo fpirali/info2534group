@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -212,6 +213,42 @@
     <Compile Include="Migrations\201808271319208_AddImageLocationAndSaleFlagToProductModel.Designer.cs">
       <DependentUpon>201808271319208_AddImageLocationAndSaleFlagToProductModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808272340116_AddBillingInfoToCustomerFleshOutOrderAndDeleteTransaction.cs" />
+    <Compile Include="Migrations\201808272340116_AddBillingInfoToCustomerFleshOutOrderAndDeleteTransaction.Designer.cs">
+      <DependentUpon>201808272340116_AddBillingInfoToCustomerFleshOutOrderAndDeleteTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808280011157_AddPaymentInfoToCustomer.cs" />
+    <Compile Include="Migrations\201808280011157_AddPaymentInfoToCustomer.Designer.cs">
+      <DependentUpon>201808280011157_AddPaymentInfoToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281359535_AddProductIdFieldsToOrderModel.cs" />
+    <Compile Include="Migrations\201808281359535_AddProductIdFieldsToOrderModel.Designer.cs">
+      <DependentUpon>201808281359535_AddProductIdFieldsToOrderModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281403167_AddOrderIdToProductModel.cs" />
+    <Compile Include="Migrations\201808281403167_AddOrderIdToProductModel.Designer.cs">
+      <DependentUpon>201808281403167_AddOrderIdToProductModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281500232_AddMarkdownFieldToProduct.cs" />
+    <Compile Include="Migrations\201808281500232_AddMarkdownFieldToProduct.Designer.cs">
+      <DependentUpon>201808281500232_AddMarkdownFieldToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281519387_AddPetFieldsToCategoryAndPetTable.cs" />
+    <Compile Include="Migrations\201808281519387_AddPetFieldsToCategoryAndPetTable.Designer.cs">
+      <DependentUpon>201808281519387_AddPetFieldsToCategoryAndPetTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281534488_DeletePetFieldsFromCategoryAddPetFieldsToProduct.cs" />
+    <Compile Include="Migrations\201808281534488_DeletePetFieldsFromCategoryAddPetFieldsToProduct.Designer.cs">
+      <DependentUpon>201808281534488_DeletePetFieldsFromCategoryAddPetFieldsToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281544486_DeleteOrderFieldsFromProduct.cs" />
+    <Compile Include="Migrations\201808281544486_DeleteOrderFieldsFromProduct.Designer.cs">
+      <DependentUpon>201808281544486_DeleteOrderFieldsFromProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281554350_RemoveMaxLengthFromProductAndCategory.cs" />
+    <Compile Include="Migrations\201808281554350_RemoveMaxLengthFromProductAndCategory.Designer.cs">
+      <DependentUpon>201808281554350_RemoveMaxLengthFromProductAndCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -219,9 +256,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Pet.cs" />
     <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Question.cs" />
-    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -299,6 +336,12 @@
     <Content Include="Views\Questions\Details.cshtml" />
     <Content Include="Views\Questions\Edit.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Product\IndexSale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -314,6 +357,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808271319208_AddImageLocationAndSaleFlagToProductModel.resx">
       <DependentUpon>201808271319208_AddImageLocationAndSaleFlagToProductModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808272340116_AddBillingInfoToCustomerFleshOutOrderAndDeleteTransaction.resx">
+      <DependentUpon>201808272340116_AddBillingInfoToCustomerFleshOutOrderAndDeleteTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808280011157_AddPaymentInfoToCustomer.resx">
+      <DependentUpon>201808280011157_AddPaymentInfoToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281359535_AddProductIdFieldsToOrderModel.resx">
+      <DependentUpon>201808281359535_AddProductIdFieldsToOrderModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281403167_AddOrderIdToProductModel.resx">
+      <DependentUpon>201808281403167_AddOrderIdToProductModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281500232_AddMarkdownFieldToProduct.resx">
+      <DependentUpon>201808281500232_AddMarkdownFieldToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281519387_AddPetFieldsToCategoryAndPetTable.resx">
+      <DependentUpon>201808281519387_AddPetFieldsToCategoryAndPetTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281534488_DeletePetFieldsFromCategoryAddPetFieldsToProduct.resx">
+      <DependentUpon>201808281534488_DeletePetFieldsFromCategoryAddPetFieldsToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281544486_DeleteOrderFieldsFromProduct.resx">
+      <DependentUpon>201808281544486_DeleteOrderFieldsFromProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281554350_RemoveMaxLengthFromProductAndCategory.resx">
+      <DependentUpon>201808281554350_RemoveMaxLengthFromProductAndCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

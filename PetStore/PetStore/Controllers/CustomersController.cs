@@ -10,114 +10,107 @@ using PetStore.Models;
 
 namespace PetStore.Controllers
 {
-    public class ProductController : Controller
+    public class CustomersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Product
+        // GET: Customers
         public ActionResult Index()
         {
-            return View(db.ProductModels.ToList());
+            return View(db.Customers.ToList());
         }
 
-        // GET: Products on sale
-        public ActionResult IndexSale()
-        {
-            var sales = db.ProductModels.Where(m => m.Markdown > 0).ToList();
-            return View(sales);
-        }
-
-        // GET: Product/Details/5
+        // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductModels productModels = db.ProductModels.Find(id);
-            if (productModels == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(productModels);
+            return View(customer);
         }
 
-        // GET: Product/Create
+        // GET: Customers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Product/Create
+        // POST: Customers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] ProductModels productModels)
+        public ActionResult Create([Bind(Include = "Id,UserId,OrderId,CustomerPhone,CustomerEmail,ShippingFirstName,ShippingLastName,ShippingAddress1,ShippingAddress2,ShippingCity,ShippingState,ShippingPostalCode,CardNumber,ExpirationMonth,ExpirationYear,CardPin,BillingFirstName,BillingLastName,BillingAddress1,BillingAddress2,BillingCity,BillingState,BillingPostalCode")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.ProductModels.Add(productModels);
+                db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(productModels);
+            return View(customer);
         }
 
-        // GET: Product/Edit/5
+        // GET: Customers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductModels productModels = db.ProductModels.Find(id);
-            if (productModels == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(productModels);
+            return View(customer);
         }
 
-        // POST: Product/Edit/5
+        // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] ProductModels productModels)
+        public ActionResult Edit([Bind(Include = "Id,UserId,OrderId,CustomerPhone,CustomerEmail,ShippingFirstName,ShippingLastName,ShippingAddress1,ShippingAddress2,ShippingCity,ShippingState,ShippingPostalCode,CardNumber,ExpirationMonth,ExpirationYear,CardPin,BillingFirstName,BillingLastName,BillingAddress1,BillingAddress2,BillingCity,BillingState,BillingPostalCode")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(productModels).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(productModels);
+            return View(customer);
         }
 
-        // GET: Product/Delete/5
+        // GET: Customers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductModels productModels = db.ProductModels.Find(id);
-            if (productModels == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(productModels);
+            return View(customer);
         }
 
-        // POST: Product/Delete/5
+        // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProductModels productModels = db.ProductModels.Find(id);
-            db.ProductModels.Remove(productModels);
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

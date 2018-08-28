@@ -7,24 +7,24 @@ using System.Web;
 
 namespace PetStore.Models
 {
-    // 20180824 do we need an order class to expand on transaction? - kelsey
-    // also, would we need a separate class for order item (product id, quantity, price)??
     public class Order
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        // this will correspond with the customer id
         public int CustomerId { get; set; }
 
-        //// this will correspond with the transaction id??
-        //public int TransactionId { get; set; }
+        public int ProductId { get; set; }
 
-        //public DateTime OrderDate { get; set; }
+        // 20180827 added order date, order items, total, and is paid for flag - kelsey
+        public DateTime OrderDate { get; set; }
 
-        //// list of order items??
-        //public List<OrderItem> OrderItems { get; set; }
+        // one record per item, so if two items are ordered there will be two records for the product
+        public List<ProductModels> OrderItems { get; set; }
 
-        //public decimal Total { get; set; }
+        public decimal ItemPrice { get; set; }
+
+        // the total for the order, which is the sum of all products in the list
+        public decimal OrderTotal { get; set; }
     }
 }
