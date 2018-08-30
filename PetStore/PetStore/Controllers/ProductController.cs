@@ -17,28 +17,8 @@ namespace PetStore.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View(db.ProductModels.ToList());
-        }
-
-        // GET: Products on sale
-        public ActionResult IndexSale()
-        {
-            var sales = db.ProductModels.Where(m => m.Markdown > 0).ToList();
-            return View(sales);
-        }
-
-        // GET: Products by category
-        public ActionResult BrowseCategories(int id)
-        {
-            var products = db.ProductModels.Where(m => m.CategoryId == id).ToList();
-            return View(products);
-        }
-
-        // GET: Products by pet type
-        public ActionResult BrowsePets(int id)
-        {
-            var products = db.ProductModels.Where(m => m.PetId == id).ToList();
-            return View(products);
+            var productModels = db.ProductModels.Include(p => p.Category);
+            return View(productModels.ToList());
         }
 
         // GET: Product/Details/5
@@ -59,49 +39,7 @@ namespace PetStore.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-            var categories = GetAllCategories();
-            var pets = GetAllPets();
-            var model = new ProductModels();
-
-            model.Categories = GetSelectListItems(categories);
-            model.Pets = GetSelectListItems(pets);
-            return View(model);
-
-            //ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId");
-            //return View();
-        }
-
-        // this takes a list of strings and returns a list of select list items to render the drop down list with
-        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<string> items)
-        {
-            var list = new List<SelectListItem>();
-            foreach(var v in items)
-            {
-                list.Add(new SelectListItem { Value = v , Text = v });
-            }
-            return list;
-        }
-
-        // this will get all pet types from the db and return them as a list of strings
-        private IEnumerable<string> GetAllPets()
-        {
-            List<string> list = new List<string>();
-            foreach(var v in db.Pets)
-            {
-                list.Add(v.Type);
-            }
-            return list;
-        }
-
-        // this will get all categories from the db and return them as a list of strings
-        private IEnumerable<string> GetAllCategories()
-        {
-            List<string> list = new List<string>();
-            foreach(var v in db.Categories)
-            {
-                list.Add(v.Name);
-            }
-            return list;
+            return View();
         }
 
         // POST: Product/Create
@@ -109,7 +47,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,PetId,CategoryId,OnSale,Markdown,ImageFilePath")] ProductModels productModels)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,CategoryId,Price,ImageFilePath,OnSale")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
@@ -118,6 +56,7 @@ namespace PetStore.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
             return View(productModels);
         }
 
@@ -133,6 +72,7 @@ namespace PetStore.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
             return View(productModels);
         }
 
@@ -141,7 +81,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] ProductModels productModels)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,CategoryId,Price,ImageFilePath,OnSale")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
@@ -149,6 +89,7 @@ namespace PetStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
             return View(productModels);
         }
 

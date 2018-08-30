@@ -31,6 +31,7 @@ namespace PetStore.Models
         public DbSet<BillingAddress> BillingAddresses { get; set; }
         public DbSet<ShippingAddress> ShippingAddresses { get; set; }
         public DbSet<PaymentInformation> PaymentInformation { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         public ApplicationDbContext()
             : base("petstore4", throwIfV1Schema: false)
