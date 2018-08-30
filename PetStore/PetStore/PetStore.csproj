@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -212,6 +213,10 @@
     <Compile Include="Migrations\201808271319208_AddImageLocationAndSaleFlagToProductModel.cs" />
     <Compile Include="Migrations\201808271319208_AddImageLocationAndSaleFlagToProductModel.Designer.cs">
       <DependentUpon>201808271319208_AddImageLocationAndSaleFlagToProductModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808300008002_AddTransactionTable.cs" />
+    <Compile Include="Migrations\201808300008002_AddTransactionTable.Designer.cs">
+      <DependentUpon>201808300008002_AddTransactionTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -307,6 +312,7 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -323,7 +329,11 @@
     <EmbeddedResource Include="Migrations\201808271319208_AddImageLocationAndSaleFlagToProductModel.resx">
       <DependentUpon>201808271319208_AddImageLocationAndSaleFlagToProductModel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808300008002_AddTransactionTable.resx">
+      <DependentUpon>201808300008002_AddTransactionTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

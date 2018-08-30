@@ -21,9 +21,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </th>
         <th></th>
     </tr>
 
@@ -37,10 +34,7 @@
         </td>
         @*20180827 added columns for price and category - kelsey*@
         <td>
-            @Html.DisplayFor(modelItem => item.Price.ToString("c"))
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
+            @Html.DisplayFor(m => item.Price )
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
