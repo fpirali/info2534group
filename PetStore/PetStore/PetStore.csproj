@@ -250,17 +250,28 @@
     <Compile Include="Migrations\201808281554350_RemoveMaxLengthFromProductAndCategory.Designer.cs">
       <DependentUpon>201808281554350_RemoveMaxLengthFromProductAndCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808300050384_AddBillingAddressShippingAddressPaymentAndPetsTables.cs" />
+    <Compile Include="Migrations\201808300050384_AddBillingAddressShippingAddressPaymentAndPetsTables.Designer.cs">
+      <DependentUpon>201808300050384_AddBillingAddressShippingAddressPaymentAndPetsTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301328136_AddColumnsToProduct.cs" />
+    <Compile Include="Migrations\201808301328136_AddColumnsToProduct.Designer.cs">
+      <DependentUpon>201808301328136_AddColumnsToProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BillingAddress.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\PaymentInformation.cs" />
     <Compile Include="Models\Pet.cs" />
     <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\ShippingAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -393,6 +404,15 @@
     <EmbeddedResource Include="Migrations\201808281554350_RemoveMaxLengthFromProductAndCategory.resx">
       <DependentUpon>201808281554350_RemoveMaxLengthFromProductAndCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808300050384_AddBillingAddressShippingAddressPaymentAndPetsTables.resx">
+      <DependentUpon>201808300050384_AddBillingAddressShippingAddressPaymentAndPetsTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301328136_AddColumnsToProduct.resx">
+      <DependentUpon>201808301328136_AddColumnsToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

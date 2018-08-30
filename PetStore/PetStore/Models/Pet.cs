@@ -7,8 +7,10 @@ using System.Web;
 
 namespace PetStore.Models
 {
+    [Table("Pets")]
     public class Pet
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
@@ -16,7 +18,6 @@ namespace PetStore.Models
         [Display(Name = "Pet type")]
         public string Type { get; set; }
 
-        [Required(ErrorMessage = "The pet description is required.")]
         [Display(Name = "Pet description")]
         public string Description { get; set; }
     }

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PetStore.Models
 {
@@ -46,9 +47,14 @@ namespace PetStore.Models
         public Category Category { get; set; }
 
         // 20180828 added field for pet type id 
-        [Required(ErrorMessage = "The type of pet this is intended for is required.")]
+        //[Required(ErrorMessage = "The type of pet this is intended for is required.")]
         [Display(Name = "Type of pet")]
         public int PetId { get; set; }
         public Pet Pet { get; set; }
+
+        // 20180829 this will hold all drop down list items for these properties
+        public IEnumerable<SelectListItem> Categories { get; set; }
+
+        public IEnumerable<SelectListItem> Pets { get; set; }
     }
 }

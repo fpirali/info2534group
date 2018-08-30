@@ -27,6 +27,20 @@ namespace PetStore.Controllers
             return View(sales);
         }
 
+        // GET: Products by category
+        public ActionResult BrowseCategories(int id)
+        {
+            var products = db.ProductModels.Where(m => m.CategoryId == id).ToList();
+            return View(products);
+        }
+
+        // GET: Products by pet type
+        public ActionResult BrowsePets(int id)
+        {
+            var products = db.ProductModels.Where(m => m.PetId == id).ToList();
+            return View(products);
+        }
+
         // GET: Product/Details/5
         public ActionResult Details(int? id)
         {
@@ -45,7 +59,49 @@ namespace PetStore.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-            return View();
+            var categories = GetAllCategories();
+            var pets = GetAllPets();
+            var model = new ProductModels();
+
+            model.Categories = GetSelectListItems(categories);
+            model.Pets = GetSelectListItems(pets);
+            return View(model);
+
+            //ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId");
+            //return View();
+        }
+
+        // this takes a list of strings and returns a list of select list items to render the drop down list with
+        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<string> items)
+        {
+            var list = new List<SelectListItem>();
+            foreach(var v in items)
+            {
+                list.Add(new SelectListItem { Value = v , Text = v });
+            }
+            return list;
+        }
+
+        // this will get all pet types from the db and return them as a list of strings
+        private IEnumerable<string> GetAllPets()
+        {
+            List<string> list = new List<string>();
+            foreach(var v in db.Pets)
+            {
+                list.Add(v.Type);
+            }
+            return list;
+        }
+
+        // this will get all categories from the db and return them as a list of strings
+        private IEnumerable<string> GetAllCategories()
+        {
+            List<string> list = new List<string>();
+            foreach(var v in db.Categories)
+            {
+                list.Add(v.Name);
+            }
+            return list;
         }
 
         // POST: Product/Create
@@ -53,7 +109,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] ProductModels productModels)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,PetId,CategoryId,OnSale,Markdown,ImageFilePath")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
