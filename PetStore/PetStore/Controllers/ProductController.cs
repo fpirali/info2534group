@@ -17,14 +17,14 @@ namespace PetStore.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            var productModels = db.ProductModels.Include(p => p.Category);
+            var productModels = db.ProductModels.Include(p => p.Category).Include(p => p.Pet);
             return View(productModels.ToList());
         }
 
         // GET: Products on sale
         public ActionResult IndexSale()
         {
-            var products = db.ProductModels.Include(m => m.Category).Where(m => m.OnSale == true);
+            var products = db.ProductModels.Include(p => p.Category).Include(p => p.Pet).Where(p => p.OnSale == true);
             return View(products);
         }
 
@@ -46,7 +46,8 @@ namespace PetStore.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            ViewBag.Categories = new SelectList(db.Categories, "Id", "Name");
+            ViewBag.Pets = new SelectList(db.Pets, "Id", "Type");
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,CategoryId,Price,ImageFilePath,OnSale")] ProductModels productModels)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,CategoryId,PetId,Price,ImageFilePath,OnSale")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +65,8 @@ namespace PetStore.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
+            ViewBag.Categories = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
+            ViewBag.Pets = new SelectList(db.Pets, "Id", "Type", productModels.PetId);
             return View(productModels);
         }
 
@@ -80,7 +82,8 @@ namespace PetStore.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
+            ViewBag.Categories = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
+            ViewBag.Pets = new SelectList(db.Pets, "Id", "Type", productModels.PetId);
             return View(productModels);
         }
 
@@ -89,7 +92,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,CategoryId,Price,ImageFilePath,OnSale")] ProductModels productModels)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,CategoryId,PetId,Price,ImageFilePath,OnSale")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +100,8 @@ namespace PetStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
+            ViewBag.Categories = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
+            ViewBag.Pets = new SelectList(db.Pets, "Id", "Type", productModels.PetId);
             return View(productModels);
         }
 
