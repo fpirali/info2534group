@@ -17,7 +17,8 @@ namespace PetStore.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View(db.ProductModels.ToList());
+            var productModels = db.ProductModels.Include(p => p.Category);
+            return View(productModels.ToList());
         }
 
         // GET: Product/Details/5
@@ -38,6 +39,7 @@ namespace PetStore.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] ProductModels productModels)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,CategoryId,Price,ImageFilePath,OnSale")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace PetStore.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
             return View(productModels);
         }
 
@@ -70,6 +73,7 @@ namespace PetStore.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
             return View(productModels);
         }
 
@@ -78,7 +82,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] ProductModels productModels)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,CategoryId,Price,ImageFilePath,OnSale")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace PetStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
             return View(productModels);
         }
 
