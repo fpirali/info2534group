@@ -26,6 +26,7 @@ textarea {
 .jumbotron {
     background: url('images/store-front.JPG') no-repeat center top;
     min-height: 400px;
+    width: 100%;
 }
 #home-heading {
     color: #FFF;

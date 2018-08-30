@@ -1,15 +1,17 @@
 ﻿@model IEnumerable<PetStore.Models.ProductModels>
 
 @{
-    ViewBag.Title = "Sale";
+    ViewBag.Title = "Shop";
 }
 
-<h2>Sale</h2>
+<h2>Shop</h2>
 <p>
     @Html.ActionLink("Shop All", "Index") |
     @Html.ActionLink("Shop Sale", "IndexSale") |
     @Html.ActionLink("Create New", "Create")
 </p>
+
+
 <table class="table">
     <tr>
         @*20180828 added column for product images - kelsey*@
@@ -17,21 +19,24 @@
             @Html.DisplayNameFor(model => model.ImageFilePath)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        @*20180827 added columns for price and category - kelsey*@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @*20180827 changed display name for category to use display description*@
-            @Html.DisplayNameFor(model => model.Category.Name)
+            @Html.DisplayNameFor(model => model.OnSale)
+
         </th>
         <th></th>
     </tr>
+
     @foreach (var item in Model)
     {
         <tr>
@@ -40,17 +45,19 @@
                 @Html.Raw("<img src = \"" + item.ImageFilePath + "\" height=\"300\" width=\"300\" />")
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            @*20180827 added columns for price and category - kelsey*@
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
+                @Html.DisplayFor(modelItem => item.OnSale)
             </td>
             <td>
                 @*a button to add the item to the cart*@
@@ -61,4 +68,3 @@
         </tr>
     }
 </table>
-

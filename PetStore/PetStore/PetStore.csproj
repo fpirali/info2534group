@@ -271,7 +271,6 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\PaymentInformation.cs" />
     <Compile Include="Models\Pet.cs" />
-    <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\ShippingAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -21,6 +21,13 @@ namespace PetStore.Controllers
             return View(productModels.ToList());
         }
 
+        // GET: Products on sale
+        public ActionResult IndexSale()
+        {
+            var products = db.ProductModels.Include(m => m.Category).Where(m => m.OnSale == true);
+            return View(products);
+        }
+
         // GET: Product/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,6 +46,7 @@ namespace PetStore.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             return View();
         }
 

@@ -51,10 +51,5 @@ namespace PetStore.Models
         [Display(Name = "Type of pet")]
         public int PetId { get; set; }
         public Pet Pet { get; set; }
-
-        // 20180829 this will hold all drop down list items for these properties
-        public IEnumerable<SelectListItem> Categories { get; set; }
-
-        public IEnumerable<SelectListItem> Pets { get; set; }
     }
 }
