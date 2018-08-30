@@ -12,17 +12,22 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        @*20180827 added columns for price and category - kelsey*@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            @Html.DisplayNameFor(model => model.ImageFilePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OnSale)
         </th>
         <th></th>
     </tr>
@@ -30,17 +35,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        @*20180827 added columns for price and category - kelsey*@
         <td>
-            @Html.DisplayFor(modelItem => item.Price.ToString("c"))
+            @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
+            @Html.DisplayFor(modelItem => item.ImageFilePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OnSale)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
