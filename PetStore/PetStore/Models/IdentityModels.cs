@@ -38,5 +38,7 @@ namespace PetStore.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<PetStore.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

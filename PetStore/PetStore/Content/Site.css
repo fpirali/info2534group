@@ -22,3 +22,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.jumbotron {
+    background: url('images/store-front.JPG') no-repeat;
+    min-height: 400px;
+}
