@@ -7,7 +7,6 @@ using System.Web;
 
 namespace PetStore.Models
 {
-    // 20180824 we probably need a customer class? - kelsey
     public class Customer
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -19,16 +18,24 @@ namespace PetStore.Models
         // a customer will have a list of orders
         public List<Order> Orders { get; set; }
 
+        [Required(ErrorMessage = "Your first name is required.")]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Your last name is required.")]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
         [Required(ErrorMessage = "Your phone number is required.")]
         [Display(Name = "Phone Number")]
-        public string CustomerPhone { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Your email address is required.")]
         [Display(Name = "Email Address")]
-        public string CustomerEmail { get; set; }
+        public string EmailAddress { get; set; }
 
         [Required(ErrorMessage = "Your payment method is required.")]
-        public int PaymentId { get; set; }
+        public int PaymentInformationId { get; set; }
 
         [Required(ErrorMessage = "Your billing address is required.")]
         public int BillingAddressId { get; set; }

@@ -38,6 +38,8 @@ namespace PetStore.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
+            //ViewBag.Months = new SelectList(db.PaymentInformation, "Months", "Months".ToString());
+            //ViewBag.Years = new SelectList(db.PaymentInformation, "Years", "Years".ToString());
             return View();
         }
 

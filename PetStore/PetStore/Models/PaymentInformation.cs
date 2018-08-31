@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PetStore.Models
 {
@@ -21,19 +23,19 @@ namespace PetStore.Models
 
         [Required(ErrorMessage = "The month of expiration is required.")]
         [Display(Name = "Month")]
-        [DataType(DataType.Date)]
-        [StringLength(2, ErrorMessage = "Enter a 2-digit month.")]
-        public string ExpirationMonth { get; set; }
+        public int ExpirationMonth { get; set; }
 
         [Required(ErrorMessage = "The year of expiration is required.")]
         [Display(Name = "Year")]
-        [DataType(DataType.Date)]
-        [StringLength(4, ErrorMessage = "Enter a 4-digit year.")]
-        public string ExpirationYear { get; set; }
+        public int ExpirationYear { get; set; }
 
         [Required(ErrorMessage = "The credit card pin is required.")]
         [Display(Name = "Pin")]
         [StringLength(3, ErrorMessage = "Enter a 3-digit pin.")]
         public string CardPin { get; set; }
+
+        //public int[] Months = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+        //public int[] Years = { 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030,
+        //    2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038 };      
     }
 }

@@ -19,13 +19,31 @@ namespace PetStore.Controllers
         {
             var productModels = db.ProductModels.Include(p => p.Category).Include(p => p.Pet);
             return View(productModels.ToList());
+
+            //ViewBag.Categories = new SelectList(db.Categories, "Id", "Name");
+            //ViewBag.Pets = new SelectList(db.Pets, "Id", "Type");
+            //return View();
         }
 
-        // GET: Products on sale
-        public ActionResult IndexSale()
+        // GET: Products by filter
+        public ActionResult IndexGrid(bool? sale, int? category, int? pet)
         {
-            var products = db.ProductModels.Include(p => p.Category).Include(p => p.Pet).Where(p => p.OnSale == true);
-            return View(products);
+            var products = db.ProductModels.Include(p => p.Category).Include(p => p.Pet);
+
+            if (sale != null)
+            {
+                products.Where(p => p.OnSale == sale);
+            }
+            if(category != null)
+            {
+                products.Where(p => p.CategoryId == category);
+            }
+            if(pet != null)
+            {
+                products.Where(p => p.PetId == pet);
+            }
+
+            return PartialView(products.ToList());
         }
 
         // GET: Product/Details/5
@@ -40,6 +58,9 @@ namespace PetStore.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Categories = new SelectList(db.Categories, "Id", "Name", productModels.CategoryId);
+            ViewBag.Pets = new SelectList(db.Pets, "Id", "Type", productModels.PetId);
             return View(productModels);
         }
 

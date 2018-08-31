@@ -4,156 +4,177 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Your Information</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@* this is the table for the customer's basic information *@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrderId)
+            @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerPhone)
+            @Html.DisplayNameFor(model => model.PhoneNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerEmail)
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+        </tr>
+    }
+</table>
+<hr />
+
+@* this is the table for the customer's shipping information *@
+<h2>Shipping Information . . . </h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingAddress1)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShippingFirstName)
+            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingAddress2)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShippingLastName)
+            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingCity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShippingAddress1)
+            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingState)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShippingAddress2)
+            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingPostalCode)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingAddress.ShippingAddress1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingAddress.ShippingAddress2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingAddress.ShippingCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingAddress.ShippingState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingAddress.ShippingPostalCode)
+            </td>
+        </tr>
+    }
+</table>
+<hr />
+
+@* this is the table for the customer's payment information *@
+<h2>Payment Information . . . </h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShippingCity)
+            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShippingState)
+            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShippingPostalCode)
+            @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.CardNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.CardPin)
+            </td>
+        </tr>
+    }
+</table>
+<hr />
+
+@* this is the table for the customer's billing information *@
+<h2>Billing Information . . . </h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BillingAddress.BillingAddress1)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CardNumber)
+            @Html.DisplayNameFor(model => model.BillingAddress.BillingAddress2)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ExpirationMonth)
+            @Html.DisplayNameFor(model => model.BillingAddress.BillingCity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ExpirationYear)
+            @Html.DisplayNameFor(model => model.BillingAddress.BillingState)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CardPin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillingFirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillingLastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillingAddress1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillingAddress2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillingCity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillingState)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillingPostalCode)
+            @Html.DisplayNameFor(model => model.BillingAddress.BillingPostalCode)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerPhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippingFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippingLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippingAddress1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippingAddress2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippingCity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippingState)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippingPostalCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CardNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpirationMonth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpirationYear)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CardPin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillingFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillingLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillingAddress1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillingAddress2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillingCity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillingState)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillingPostalCode)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingAddress.BillingAddress1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingAddress.BillingAddress2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingAddress.BillingCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingAddress.BillingState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingAddress.BillingPostalCode)
+            </td>
 
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 </table>
