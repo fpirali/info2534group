@@ -73,8 +73,6 @@ namespace PetStore.Controllers
                 return RedirectToAction("Details");
             }
 
-            // how to return other objects to the view?? (shipping, payment, and billing) when the page is reloaded?
-            // ie, when the submit button is clicked but the model state is not valid... ?
             return View(customer);
         }
 
@@ -98,11 +96,19 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,OrderId,CustomerPhone,CustomerEmail,ShippingFirstName,ShippingLastName,ShippingAddress1,ShippingAddress2,ShippingCity,ShippingState,ShippingPostalCode,CardNumber,ExpirationMonth,ExpirationYear,CardPin,BillingFirstName,BillingLastName,BillingAddress1,BillingAddress2,BillingCity,BillingState,BillingPostalCode")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,PhoneNumber,EmailAddress,BillingAddressIsDifferent,ShippingAddressId,PaymentInformationId,BillingAddressId,ShippingAddress,BillingAddress,PaymentInformation")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                var billing = customer.BillingAddress;
+                var shipping = customer.ShippingAddress;
+                var payment = customer.PaymentInformation;
+
+                db.Entry(billing).State = EntityState.Modified;
+                db.Entry(shipping).State = EntityState.Modified;
+                db.Entry(payment).State = EntityState.Modified;
                 db.Entry(customer).State = EntityState.Modified;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -130,7 +136,15 @@ namespace PetStore.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Customer customer = db.Customers.Find(id);
+            BillingAddress billing = db.BillingAddresses.Find(customer.BillingAddressId);
+            ShippingAddress shipping = db.ShippingAddresses.Find(customer.ShippingAddressId);
+            PaymentInformation payment = db.PaymentInformation.Find(customer.PaymentInformationId);
+
+            db.BillingAddresses.Remove(billing);
+            db.ShippingAddresses.Remove(shipping);
+            db.PaymentInformation.Remove(payment);
             db.Customers.Remove(customer);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
