@@ -163,7 +163,8 @@ namespace PetStore.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    // Redirect to the customers create view
+                    return RedirectToAction("Create", "Customers");
                 }
                 AddErrors(result);
             }

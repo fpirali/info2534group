@@ -19,6 +19,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Pet.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pet.Type)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -58,7 +66,17 @@
             @Html.DisplayFor(model => model.OnSale)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageFilePath)
+        </dt>
+
+        <dd>
+            @Html.Raw("<img src = \"" + Model.ImageFilePath + "\" height=\"300\" width=\"300\" />")
+        </dd>
+
     </dl>
+
+    @*a button to add the item to the cart*@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
