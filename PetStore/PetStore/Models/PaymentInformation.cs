@@ -12,6 +12,7 @@ namespace PetStore.Models
     [Table("PaymentInformation")]
     public class PaymentInformation
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
@@ -21,11 +22,11 @@ namespace PetStore.Models
         [StringLength(20, ErrorMessage = "Enter a 20-digit credit card number.")]
         public string CardNumber { get; set; }
 
-        [Required(ErrorMessage = "The month of expiration is required.")]
+        //[Required(ErrorMessage = "The month of expiration is required.")]
         [Display(Name = "Month")]
         public int ExpirationMonth { get; set; }
 
-        [Required(ErrorMessage = "The year of expiration is required.")]
+        //[Required(ErrorMessage = "The year of expiration is required.")]
         [Display(Name = "Year")]
         public int ExpirationYear { get; set; }
 

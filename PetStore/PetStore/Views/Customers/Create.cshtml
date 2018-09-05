@@ -130,8 +130,16 @@
                 @Html.ValidationMessageFor(model => model.PaymentInformation.CardPin, "", new { @class = "text-danger" })
             </div>
         </div>
-        <hr />
 
+        @* this is where we ask if the billing address is different than the shipping address *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.BillingAddressIsDifferent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.BillingAddressIsDifferent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BillingAddressIsDifferent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
 
         @* this is the section for the customer's billing information *@
         <h2>Billing Information . . . </h2>

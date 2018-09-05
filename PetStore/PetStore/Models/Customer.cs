@@ -9,15 +9,30 @@ namespace PetStore.Models
 {
     public class Customer
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int UserId { get; set; }
+
+
+        // these are the foreign key relationships
+        public string UserId { get; set; }
 
         public int OrderId { get; set; }
 
-        // a customer will have a list of orders
-        public List<Order> Orders { get; set; }
+        [ForeignKey("ShippingAddress")]
+        [Required(ErrorMessage = "Your shipping address is required.")]
+        public int ShippingAddressId { get; set; }
 
+        [ForeignKey("PaymentInformation")]
+        [Required(ErrorMessage = "Your payment method is required.")]
+        public int PaymentInformationId { get; set; }
+
+        [ForeignKey("BillingAddress")]
+        [Required(ErrorMessage = "Your billing address is required.")]
+        public int BillingAddressId { get; set; }
+
+
+        // this is the customer's general information
         [Required(ErrorMessage = "Your first name is required.")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -34,20 +49,15 @@ namespace PetStore.Models
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
 
-        [Required(ErrorMessage = "Your payment method is required.")]
-        public int PaymentInformationId { get; set; }
+        public bool BillingAddressIsDifferent { get; set; }
 
-        [Required(ErrorMessage = "Your billing address is required.")]
-        public int BillingAddressId { get; set; }
+        public List<Order> Orders { get; set; }
 
-        [Required(ErrorMessage = "Your shipping address is required.")]
-        public int ShippingAddressId { get; set; }
 
+        // these are the foreign object references
         public PaymentInformation PaymentInformation { get; set; }
         public BillingAddress BillingAddress { get; set; }
-        public ShippingAddress ShippingAddress { get; set; }
-
-        public bool BillingAddressIsDifferent { get; set; }
+        public ShippingAddress ShippingAddress { get; set; }        
 
 
     }

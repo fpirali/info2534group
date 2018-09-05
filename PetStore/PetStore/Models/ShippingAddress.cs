@@ -13,6 +13,7 @@ namespace PetStore.Models
         /************************************
          * this is the customer's shipping information *
         ************************************/
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 

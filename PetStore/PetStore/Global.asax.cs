@@ -14,7 +14,7 @@ namespace PetStore
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<ApplicationDbContext>(null);
+            Database.SetInitializer<ApplicationDbContext>(null);       
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

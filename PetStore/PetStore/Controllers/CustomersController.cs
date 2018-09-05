@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PetStore.Models;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity.Validation;
 
 namespace PetStore.Controllers
 {
@@ -38,9 +40,14 @@ namespace PetStore.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
+            var id = User.Identity.GetUserId();
+            var customer = db.Customers.Include(c => c.ShippingAddress).Include(c => c.PaymentInformation).Include(c => c.BillingAddress).Where(c => c.UserId.Equals(id)) as Customer;
+            
+            return View(customer);
+
             //ViewBag.Months = new SelectList(db.PaymentInformation, "Months", "Months".ToString());
             //ViewBag.Years = new SelectList(db.PaymentInformation, "Years", "Years".ToString());
-            return View();
+            //return View();
         }
 
         // POST: Customers/Create
@@ -48,15 +55,26 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,OrderId,CustomerPhone,CustomerEmail,ShippingFirstName,ShippingLastName,ShippingAddress1,ShippingAddress2,ShippingCity,ShippingState,ShippingPostalCode,CardNumber,ExpirationMonth,ExpirationYear,CardPin,BillingFirstName,BillingLastName,BillingAddress1,BillingAddress2,BillingCity,BillingState,BillingPostalCode")] Customer customer)
+        public ActionResult Create(
+            [Bind(Include = "Id,FirstName,LastName,PhoneNumber,EmailAddress,BillingAddressIsDifferent,ShippingAddressId,PaymentInformationId,BillingAddressId,ShippingAddress,BillingAddress,PaymentInformation")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                var billing = customer.BillingAddress;
+                var shipping = customer.ShippingAddress;
+                var payment = customer.PaymentInformation;
+                                                       
+                db.BillingAddresses.Add(billing);
+                db.ShippingAddresses.Add(shipping);
+                db.PaymentInformation.Add(payment);
                 db.Customers.Add(customer);
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
 
+            // how to return other objects to the view?? (shipping, payment, and billing) when the page is reloaded?
+            // ie, when the submit button is clicked but the model state is not valid... ?
             return View(customer);
         }
 
