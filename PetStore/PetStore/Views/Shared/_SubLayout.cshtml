@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+}
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav navbar-nav">
+                <li><b>Your Account</b></li>
+                @*@Html.ActionLink("Your Orders", "Orders", "Customers")*@
+                <li>@Html.ActionLink("Your account", "Index", "Customers")</li>
+                <li>@Html.ActionLink("Payment options", "IndexPayment", "Customers")</li>
+                <li>@Html.ActionLink("Your addresses", "IndexAddress", "Customers")</li>
+            </ul>
+        </div>
+
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

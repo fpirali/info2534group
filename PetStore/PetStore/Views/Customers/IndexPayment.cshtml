@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PetStore.Models.Customer>
+
+@{
+    ViewBag.Title = "IndexPayment";
+    Layout = "~/Views/Shared/_SubLayout.cshtml";
+}
+
+<h2>IndexPayment</h2>
+
+<p>
+    @Html.ActionLink("My payment methods", "IndexPayment") |
+    @Html.ActionLink("New payment method", "CreatePayment")
+</p>
+
+@* this is the table for the customer's payment information *@
+<h2>Payment Information . . . </h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.CardNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.CardPin)
+            </td>
+        </tr>
+    }
+</table>
+<hr />
+

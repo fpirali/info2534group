@@ -20,7 +20,20 @@ namespace PetStore.Controllers
         public ActionResult Index()
         {
             var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
+            return View(customers.ToList());
+        }
 
+        // GET: Customers address info
+        public ActionResult IndexAddress()
+        {
+            var customers = db.Customers.Include(c => c.BillingAddress).Include(c => c.ShippingAddress);
+            return View(customers.ToList());
+        }
+
+        // GET: Customers payment info
+        public ActionResult IndexPayment()
+        {
+            var customers = db.Customers.Include(c => c.PaymentInformation);
             return View(customers.ToList());
         }
 
@@ -52,9 +65,8 @@ namespace PetStore.Controllers
                 db.PaymentInformation.Add(payment);
 
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Index");
             }
-
             return View(customer);
         }
 
@@ -68,9 +80,8 @@ namespace PetStore.Controllers
                 db.BillingAddresses.Add(billing);
 
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Index");
             }
-
             return View(customer);
         }
 
@@ -84,9 +95,8 @@ namespace PetStore.Controllers
                 db.ShippingAddresses.Add(shipping);
 
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Index");
             }
-
             return View(customer);
         }
 
@@ -120,9 +130,8 @@ namespace PetStore.Controllers
                 db.Customers.Add(customer);
 
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Index");
             }
-
             return View(customer);
         }
 
