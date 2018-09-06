@@ -7,6 +7,6 @@ namespace PetStore.Models
 {
     public class CartViewModel
     {
-        public List<ProductModels> Products { get; set; }
+        public Cart Cart { get; set; }
     }
 }
