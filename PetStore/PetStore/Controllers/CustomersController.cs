@@ -19,7 +19,9 @@ namespace PetStore.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
+
+            return View(customers.ToList());
         }
 
         // GET: Customers/Details/5
@@ -29,7 +31,10 @@ namespace PetStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+
+            var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
+            Customer customer = customers.Where(c => c.Id == id).FirstOrDefault();
+
             if (customer == null)
             {
                 return HttpNotFound();
@@ -37,13 +42,58 @@ namespace PetStore.Controllers
             return View(customer);
         }
 
+        // GET: Customers/CreatePayment
+        public ActionResult CreatePayment(
+            [Bind(Include = "PaymentInformationId,PaymentInformation")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                var payment = customer.PaymentInformation;
+                db.PaymentInformation.Add(payment);
+
+                db.SaveChanges();
+                return RedirectToAction("Details");
+            }
+
+            return View(customer);
+        }
+
+        // GET: Customers/CreateBilling
+        public ActionResult CreateBilling(
+            [Bind(Include = "BillingAddressId,BillingAddress")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                var billing = customer.BillingAddress;
+                db.BillingAddresses.Add(billing);
+
+                db.SaveChanges();
+                return RedirectToAction("Details");
+            }
+
+            return View(customer);
+        }
+
+        // GET:Customers/CreateShipping
+        public ActionResult CreateShipping(
+            [Bind(Include = "ShippingAddressId,ShippingAddress")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                var shipping = customer.ShippingAddress;
+                db.ShippingAddresses.Add(shipping);
+
+                db.SaveChanges();
+                return RedirectToAction("Details");
+            }
+
+            return View(customer);
+        }
+
         // GET: Customers/Create
         public ActionResult Create()
         {
-            var id = User.Identity.GetUserId();
-            var customer = db.Customers.Include(c => c.ShippingAddress).Include(c => c.PaymentInformation).Include(c => c.BillingAddress).Where(c => c.UserId.Equals(id)) as Customer;
-            
-            return View(customer);
+            return View();
 
             //ViewBag.Months = new SelectList(db.PaymentInformation, "Months", "Months".ToString());
             //ViewBag.Years = new SelectList(db.PaymentInformation, "Years", "Years".ToString());
