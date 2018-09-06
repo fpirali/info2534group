@@ -61,12 +61,29 @@
             <td>
                 @Html.DisplayFor(modelItem => item.OnSale)
             </td>
-      <!--    <td>
+            <td>
                 @*a button to add the item to the cart*@
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td> -->  
+                <button class="btn btn-primary btnCartAdd" data-product-id="@item.Id" type="button">Add To Cart</button>
+            </td>
         </tr>
     }
 </table>
+
+@section scripts {
+<script>
+    $(document).ready(function () {
+        $('.btnCartAdd').click(function () {
+            //alert($(this).data('product-id'));
+            var productId = $(this).data('product-id');
+            var url = '@Url.Action("Add", "Cart", new { id = "productID" })';
+            $.ajax({
+                url: url.replace('productID', productId),
+                method: 'GET'
+            }).done(function () {
+                alert('Product added to cart.');
+            });
+        });
+    });
+</script>
+}
+
