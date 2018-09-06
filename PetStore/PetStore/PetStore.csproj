@@ -271,6 +271,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BillingAddress.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Customer.cs" />

@@ -11,7 +11,7 @@
     @Html.ActionLink("Shop Sale", "Index") |
     @Html.ActionLink("Shop by Pet", "Index") |
     @Html.ActionLink("Shop by Category", "Index") |
-    @Html.ActionLink("Create New", "Create")
+<!--  @Html.ActionLink("Create New", "Create") -->  
 </p>
 
 <table class="table">
@@ -61,12 +61,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.OnSale)
             </td>
-            <td>
+      <!--    <td>
                 @*a button to add the item to the cart*@
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            </td> -->  
         </tr>
     }
 </table>

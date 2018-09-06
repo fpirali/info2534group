@@ -10,8 +10,10 @@ namespace PetStore.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
+           // var product = db.ProductModels.Find(1);
             return View();
         }
 
