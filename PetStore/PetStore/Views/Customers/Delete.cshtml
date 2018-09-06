@@ -6,170 +6,184 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Customer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
+@* this is the side bar *@
+<div class="col-md-4">
+    @Html.ActionLink("My Information", "Index") <br />
+    @Html.ActionLink("My Details", "Details") <br />
+    @Html.ActionLink("Billing Information", "CreateBilling") <br />
+    @Html.ActionLink("Shipping Information", "CreateShipping") <br />
+    @Html.ActionLink("Payment Information", "CreatePayment")
+</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
+<div class="row">
+    <div class="col-md-4">
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Customer</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderId)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.UserId)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OrderId)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.OrderId)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.OrderId)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmailAddress)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingAddress1)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EmailAddress)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingAddress1)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShippingAddress.ShippingAddress1)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingAddress2)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ShippingAddress.ShippingAddress1)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingAddress2)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShippingAddress.ShippingAddress2)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingCity)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ShippingAddress.ShippingAddress2)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingCity)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShippingAddress.ShippingCity)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingState)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ShippingAddress.ShippingCity)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingState)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShippingAddress.ShippingState)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAddress.ShippingPostalCode)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ShippingAddress.ShippingState)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingPostalCode)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShippingAddress.ShippingPostalCode)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ShippingAddress.ShippingPostalCode)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PaymentInformation.CardNumber)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentInformation.CardNumber)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PaymentInformation.ExpirationMonth)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentInformation.ExpirationMonth)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PaymentInformation.ExpirationYear)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentInformation.ExpirationYear)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PaymentInformation.CardPin)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillingAddressIsDifferent)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentInformation.CardPin)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddressIsDifferent)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BillingAddressIsDifferent)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillingAddress.BillingAddress1)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BillingAddressIsDifferent)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingAddress1)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BillingAddress.BillingAddress1)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillingAddress.BillingAddress2)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BillingAddress.BillingAddress1)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingAddress2)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BillingAddress.BillingAddress2)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillingAddress.BillingCity)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BillingAddress.BillingAddress2)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingCity)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BillingAddress.BillingCity)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillingAddress.BillingState)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BillingAddress.BillingCity)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingState)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BillingAddress.BillingState)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillingAddress.BillingPostalCode)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BillingAddress.BillingState)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingPostalCode)
-        </dd>
-    </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BillingAddress.BillingPostalCode)
+                </dt>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+                <dd>
+                    @Html.DisplayFor(model => model.BillingAddress.BillingPostalCode)
+                </dd>
+            </dl>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>

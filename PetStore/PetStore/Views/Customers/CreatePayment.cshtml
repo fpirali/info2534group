@@ -1,0 +1,96 @@
+﻿@model PetStore.Models.Customer
+
+@{
+    ViewBag.Title = "CreatePayment";
+}
+
+<h2>CreatePayment</h2>
+
+@* this is the side bar *@
+<div class="col-md-4">
+    @Html.ActionLink("My Information", "Index") <br />
+    @Html.ActionLink("My Details", "Details") <br />
+    @Html.ActionLink("Billing Information", "CreateBilling") <br />
+    @Html.ActionLink("Shipping Information", "CreateShipping") <br />
+    @Html.ActionLink("Payment Information", "CreatePayment")
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Customer</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @* this is the section for the customer's payment information *@
+                <h2>Payment Information . . . </h2>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentInformation.CardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PaymentInformation.CardNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentInformation.CardNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* comment all this stuff out for now *@
+                @{
+                /*
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentInformation.ExpirationMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.PaymentInformation.ExpirationMonth, ViewBag.Months as IEnumerable<SelectListItem>,
+                        new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentInformation.ExpirationMonth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentInformation.ExpirationYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.PaymentInformation.ExpirationYear, ViewBag.Years as IEnumerable<SelectListItem>,
+                        new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentInformation.ExpirationYear, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                */
+                }
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentInformation.CardPin, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PaymentInformation.CardPin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentInformation.CardPin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* this is where we ask if the billing address is different than the shipping address *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BillingAddressIsDifferent, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(model => model.BillingAddressIsDifferent, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BillingAddressIsDifferent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr />
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+                    }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
