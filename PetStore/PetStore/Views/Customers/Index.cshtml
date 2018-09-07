@@ -5,14 +5,15 @@
     Layout = "~/Views/Shared/_SubLayout.cshtml";
 }
 
-<h2>Your Information</h2>
+<h2>Your Account</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-    @Html.ActionLink("My Details", "Details")
+    @Html.ActionLink("New customer", "CreateGeneral") |
+    @Html.ActionLink("My information", "Details")
 </p>
 
 @* this is the table for the customer's basic information *@
+<h2>General Information . . . </h2>
 <table class="table">
     <tr>
         <th>
@@ -50,7 +51,7 @@
 <hr />
 
 @* this is the table for the customer's shipping information *@
-<h2>Shipping Information . . . </h2>
+<h2>Shipping Addresses . . . </h2>
 <table class="table">
     <tr>
         <th>
@@ -94,18 +95,18 @@
 <hr />
 
 @* this is the table for the customer's payment information *@
-<h2>Payment Information . . . </h2>
+<h2>Payment Methods . . . </h2>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
         </th>
@@ -117,12 +118,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentInformation.CardNumber)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationMonth)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationYear)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentInformation.CardPin)
             </td>
@@ -132,7 +133,7 @@
 <hr />
 
 @* this is the table for the customer's billing information *@
-<h2>Billing Information . . . </h2>
+<h2>Billing Addresses . . . </h2>
 <table class="table">
     <tr>
         <th>

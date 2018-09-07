@@ -7,6 +7,7 @@ using System.Web;
 
 namespace PetStore.Models
 {
+    [Serializable]
     public class Customer
     {
         [Key]

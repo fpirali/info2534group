@@ -16,6 +16,9 @@ namespace PetStore.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /**************************************
+         * these are all of the get events *
+        **************************************/
         // GET: Customers
         public ActionResult Index()
         {
@@ -54,60 +57,53 @@ namespace PetStore.Controllers
             }
             return View(customer);
         }
-
+        
         // GET: Customers/CreatePayment
-        public ActionResult CreatePayment(
-            [Bind(Include = "PaymentInformationId,PaymentInformation")] Customer customer)
+        public ActionResult CreatePayment()
         {
-            if (ModelState.IsValid)
-            {
-                var payment = customer.PaymentInformation;
-                db.PaymentInformation.Add(payment);
-
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(customer);
+            return View();
         }
 
         // GET: Customers/CreateBilling
-        public ActionResult CreateBilling(
-            [Bind(Include = "BillingAddressId,BillingAddress")] Customer customer)
+        public ActionResult CreateBilling()
         {
-            if (ModelState.IsValid)
-            {
-                var billing = customer.BillingAddress;
-                db.BillingAddresses.Add(billing);
-
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(customer);
+            return View();
         }
 
-        // GET:Customers/CreateShipping
+        // GET: Customers/CreateShipping
+        public ActionResult CreateShipping()
+        {
+            return View();
+        }
+
+        // GET: Customers/CreateGeneral
+        public ActionResult CreateGeneral()
+        {
+            return View();
+        }
+
+
+        /**************************************
+         * these are all of the create events *
+        **************************************/ 
+        // POST: Customers/CreatePayment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePayment(
+            [Bind(Include = "PaymentInformationId,PaymentInformation")] Customer customer)
+        {
+            TempData["payment"] = customer.PaymentInformation;
+            return RedirectToAction("CreateBilling");
+        }
+
+        // POST:Customers/CreateShipping
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateShipping(
             [Bind(Include = "ShippingAddressId,ShippingAddress")] Customer customer)
         {
-            if (ModelState.IsValid)
-            {
-                var shipping = customer.ShippingAddress;
-                db.ShippingAddresses.Add(shipping);
-
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(customer);
-        }
-
-        // GET: Customers/Create
-        public ActionResult Create()
-        {
-            return View();
-
-            //ViewBag.Months = new SelectList(db.PaymentInformation, "Months", "Months".ToString());
-            //ViewBag.Years = new SelectList(db.PaymentInformation, "Years", "Years".ToString());
-            //return View();
+            TempData["shipping"] = customer.ShippingAddress;
+            return RedirectToAction("CreatePayment");
         }
 
         // POST: Customers/Create
@@ -115,24 +111,46 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(
-            [Bind(Include = "Id,FirstName,LastName,PhoneNumber,EmailAddress,BillingAddressIsDifferent,ShippingAddressId,PaymentInformationId,BillingAddressId,ShippingAddress,BillingAddress,PaymentInformation")] Customer customer)
+        public ActionResult CreateGeneral(
+            [Bind(Include = "Id,FirstName,LastName,PhoneNumber,EmailAddress")] Customer customer)
         {
-            if (ModelState.IsValid)
-            {
-                var billing = customer.BillingAddress;
-                var shipping = customer.ShippingAddress;
-                var payment = customer.PaymentInformation;
-                                                       
-                db.BillingAddresses.Add(billing);
-                db.ShippingAddresses.Add(shipping);
-                db.PaymentInformation.Add(payment);
-                db.Customers.Add(customer);
+            TempData["first"] = customer.FirstName;
+            TempData["last"] = customer.LastName;
+            TempData["phone"] = customer.PhoneNumber;
+            TempData["email"] = customer.EmailAddress;
+             
+            return RedirectToAction("CreateShipping");
+        }
 
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(customer);
+        // POST: Customers/CreateBilling
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBilling(
+            [Bind(Include = "BillingAddressId,BillingAddress")] Customer customer)
+        {
+            // define the address and payment models
+            BillingAddress billing = customer.BillingAddress;
+            ShippingAddress shipping = (ShippingAddress)TempData["shipping"];
+            PaymentInformation payment = (PaymentInformation)TempData["payment"];
+
+            // define the customer model
+            customer.FirstName = TempData["first"].ToString();
+            customer.LastName = TempData["last"].ToString();
+            customer.PhoneNumber = TempData["phone"].ToString();
+            customer.EmailAddress = TempData["email"].ToString();
+
+            customer.ShippingAddress = shipping;
+            customer.PaymentInformation = payment;
+
+            // add the customer data to the database
+            db.BillingAddresses.Add(billing);
+            db.ShippingAddresses.Add(shipping);
+            db.PaymentInformation.Add(payment);
+            db.Customers.Add(customer);
+
+            // save the changes and redirect to the index
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Customers/Edit/5
@@ -150,6 +168,10 @@ namespace PetStore.Controllers
             return View(customer);
         }
 
+
+        /**************************************
+         * these are the edit / delete events *
+        **************************************/
         // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
