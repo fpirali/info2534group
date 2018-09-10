@@ -76,6 +76,7 @@ namespace PetStore.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Description,CategoryId,PetId,Price,ImageFilePath,OnSale")] ProductModels productModels)
         {
@@ -92,6 +93,7 @@ namespace PetStore.Controllers
         }
 
         // GET: Product/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -113,6 +115,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Name,Description,CategoryId,PetId,Price,ImageFilePath,OnSale")] ProductModels productModels)
         {
             if (ModelState.IsValid)
@@ -127,6 +130,7 @@ namespace PetStore.Controllers
         }
 
         // GET: Product/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -142,6 +146,7 @@ namespace PetStore.Controllers
         }
 
         // POST: Product/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
