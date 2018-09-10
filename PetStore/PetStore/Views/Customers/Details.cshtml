@@ -5,165 +5,164 @@
     Layout = "~/Views/Shared/_SubLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Your Account</h2>
 
-<div>
-    <h4>Customer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
+<p>
+    @Html.ActionLink("New customer", "CreateGeneral") |
+    @Html.ActionLink("My information", "Details")
+</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OrderId)
-        </dd>
-
-        <dt>
+@* this is the table for the customer's basic information *@
+<h2>General Information . . . </h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.EmailAddress)
-        </dt>
+        </th>
+    </tr>
 
-        <dd>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </td>
+        <td>
             @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
+        </td>
+    </tr>
+</table>
+<hr />
 
-        <dt>
+@* this is the table for the customer's shipping information *@
+<h2>Shipping Address . . . </h2>
+<table class="table">
+    <tr>
+        <th>
             @Html.DisplayNameFor(model => model.ShippingAddress.ShippingAddress1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingAddress1)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ShippingAddress.ShippingAddress2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingAddress2)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ShippingAddress.ShippingCity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingCity)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ShippingAddress.ShippingState)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress.ShippingState)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ShippingAddress.ShippingPostalCode)
-        </dt>
+        </th>
+    </tr>
 
-        <dd>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.ShippingAddress.ShippingAddress1)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ShippingAddress.ShippingAddress2)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ShippingAddress.ShippingCity)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ShippingAddress.ShippingState)
+        </td>
+        <td>
             @Html.DisplayFor(model => model.ShippingAddress.ShippingPostalCode)
-        </dd>
+        </td>
+    </tr>
+</table>
+<hr />
 
-        <dt>
+@* this is the table for the customer's payment information *@
+<h2>Payment Method . . . </h2>
+<table class="table">
+    <tr>
+        <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PaymentInformation.CardNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PaymentInformation.ExpirationMonth)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PaymentInformation.ExpirationYear)
-        </dd>
-
-        <dt>
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
+            </th>*@
+        <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
-        </dt>
+        </th>
+    </tr>
 
-        <dd>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.PaymentInformation.CardNumber)
+        </td>
+        @*<td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationYear)
+            </td>*@
+        <td>
             @Html.DisplayFor(model => model.PaymentInformation.CardPin)
-        </dd>
+        </td>
+    </tr>
+</table>
+<hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillingAddressIsDifferent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddressIsDifferent)
-        </dd>
-
-        <dt>
+@* this is the table for the customer's billing information *@
+<h2>Billing Address . . . </h2>
+<table class="table">
+    <tr>
+        <th>
             @Html.DisplayNameFor(model => model.BillingAddress.BillingAddress1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingAddress1)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.BillingAddress.BillingAddress2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingAddress2)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.BillingAddress.BillingCity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingCity)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.BillingAddress.BillingState)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress.BillingState)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.BillingAddress.BillingPostalCode)
-        </dt>
+        </th>
+    </tr>
 
-        <dd>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.BillingAddress.BillingAddress1)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.BillingAddress.BillingAddress2)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.BillingAddress.BillingCity)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.BillingAddress.BillingState)
+        </td>
+        <td>
             @Html.DisplayFor(model => model.BillingAddress.BillingPostalCode)
-        </dd>
-    </dl>
-</div>
+        </td>
+    </tr>
+</table>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

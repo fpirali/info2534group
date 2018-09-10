@@ -39,24 +39,6 @@ namespace PetStore.Controllers
             var customers = db.Customers.Include(c => c.PaymentInformation);
             return View(customers.ToList());
         }
-
-        // GET: Customers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
-            Customer customer = customers.Where(c => c.Id == id).FirstOrDefault();
-
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
         
         // GET: Customers/CreatePayment
         public ActionResult CreatePayment()
@@ -82,10 +64,46 @@ namespace PetStore.Controllers
             return View();
         }
 
+        // GET: Customers/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
+            Customer customer = customers.Where(c => c.Id == id).FirstOrDefault();
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
+
+        // GET: Customers/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
+            Customer customer = customers.Where(c => c.Id == id).FirstOrDefault();
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
+
 
         /**************************************
          * these are all of the create events *
-        **************************************/ 
+        **************************************/
         // POST: Customers/CreatePayment
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -153,22 +171,6 @@ namespace PetStore.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Customers/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
-
-
         /**************************************
          * these are the edit / delete events *
         **************************************/
@@ -177,19 +179,38 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,PhoneNumber,EmailAddress,BillingAddressIsDifferent,ShippingAddressId,PaymentInformationId,BillingAddressId,ShippingAddress,BillingAddress,PaymentInformation")] Customer customer)
+        public ActionResult Edit(
+            [Bind(Include = "Id,FirstName,LastName,PhoneNumber,EmailAddress,BillingAddressId,BillingAddress,ShippingAddressId,ShippingAddress,PaymentInformationId,PaymentInformation")] Customer customer,
+            int? id)
         {
+            // define the address and payment models
+            BillingAddress billing = customer.BillingAddress;
+            ShippingAddress shipping = customer.ShippingAddress;
+            PaymentInformation payment = customer.PaymentInformation;
+
+            // get the address and payment model ids
+            int billingId = db.Customers.Where(c => c.Id == id).Select(c => c.BillingAddressId).FirstOrDefault();
+            int shippingId = db.Customers.Where(c => c.Id == id).Select(c => c.ShippingAddressId).FirstOrDefault();
+            int paymentId = db.Customers.Where(c => c.Id == id).Select(c => c.PaymentInformationId).FirstOrDefault();
+
+            // set the address and payment model ids
+            billing.Id = billingId;
+            shipping.Id = shippingId;
+            payment.Id = paymentId;
+
+            customer.BillingAddressId = billingId;
+            customer.ShippingAddressId = shippingId;
+            customer.PaymentInformationId = paymentId;
+           
             if (ModelState.IsValid)
             {
-                var billing = customer.BillingAddress;
-                var shipping = customer.ShippingAddress;
-                var payment = customer.PaymentInformation;
-
+                // update the customer data in the database
                 db.Entry(billing).State = EntityState.Modified;
                 db.Entry(shipping).State = EntityState.Modified;
                 db.Entry(payment).State = EntityState.Modified;
                 db.Entry(customer).State = EntityState.Modified;
 
+                // save the changes and redirect to the index
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

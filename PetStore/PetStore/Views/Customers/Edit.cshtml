@@ -13,7 +13,7 @@
 
     <div class="form-horizontal">
         @* this is the section for the customer's personal information *@
-        <h2>Your Information . . . </h2>
+        <h2>General Information . . . </h2>
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -49,7 +49,7 @@
 
 
         @* this is the section for the customer's shipping information *@
-        <h2>Shipping Information . . . </h2>
+        <h2>Shipping Address . . . </h2>
         <div class="form-group">
             @Html.LabelFor(model => model.ShippingAddress.ShippingAddress1, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -93,7 +93,7 @@
 
 
         @* this is the section for the customer's payment information *@
-        <h2>Payment Information . . . </h2>
+        <h2>Payment Method . . . </h2>
         <div class="form-group">
             @Html.LabelFor(model => model.PaymentInformation.CardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -144,7 +144,7 @@
         <hr />
 
         @* this is the section for the customer's billing information *@
-        <h2>Billing Information . . . </h2>
+        <h2>Billing Address . . . </h2>
         <div class="form-group">
             @Html.LabelFor(model => model.BillingAddress.BillingAddress1, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
