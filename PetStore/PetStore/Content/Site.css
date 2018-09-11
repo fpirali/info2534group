@@ -54,3 +54,12 @@ th {
     background-color: #4CAF50;
     color: white;
 }
+
+.cart {
+    border-bottom: 2px solid black;
+}
+#totalCart {
+    
+    background-color: black;
+    color: white;
+}
