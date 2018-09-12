@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace PetStore.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         protected ApplicationDbContext db { get; set; }
