@@ -19,10 +19,6 @@ namespace PetStore.Controllers
         {
             var productModels = db.ProductModels.Include(p => p.Category).Include(p => p.Pet);
             return View(productModels.ToList());
-
-            //ViewBag.Categories = new SelectList(db.Categories, "Id", "Name");
-            //ViewBag.Pets = new SelectList(db.Pets, "Id", "Type");
-            //return View();
         }
 
         // GET: Products by filter

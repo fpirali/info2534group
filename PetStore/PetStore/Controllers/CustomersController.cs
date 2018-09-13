@@ -20,51 +20,90 @@ namespace PetStore.Controllers
          * these are all of the get events *
         **************************************/
         // GET: Customers
-        public ActionResult Index()
+        [Authorize(Roles = "Admin,Customer")]
+        public ActionResult Index(int? id)
         {
             var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
-            return View(customers.ToList());
+
+            if (User.IsInRole("Admin"))
+            {
+                return View(customers.ToList());
+            }
+            else
+            {
+                customers = customers.Where(c => c.Id == id);
+                return View(customers.ToList());
+            }
         }
 
         // GET: Customers address info
-        public ActionResult IndexAddress()
+        [Authorize(Roles = "Admin,Customer")]
+        public ActionResult IndexAddress(int? id)
         {
             var customers = db.Customers.Include(c => c.BillingAddress).Include(c => c.ShippingAddress);
-            return View(customers.ToList());
+
+            if (User.IsInRole("Admin"))
+            {
+                return View(customers.ToList());
+            }
+            else
+            {
+                customers = customers.Where(c => c.Id == id);
+                return View(customers.ToList());
+            }
         }
 
         // GET: Customers payment info
-        public ActionResult IndexPayment()
+        [Authorize(Roles = "Admin,Customer")]
+        public ActionResult IndexPayment(int? id)
         {
             var customers = db.Customers.Include(c => c.PaymentInformation);
-            return View(customers.ToList());
+
+            if (User.IsInRole("Admin"))
+            {
+                return View(customers.ToList());
+            }
+            else
+            {
+                customers = customers.Where(c => c.Id == id);
+                return View(customers.ToList());
+            }
         }
-        
+
         // GET: Customers/CreatePayment
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreatePayment()
         {
             return View();
         }
 
         // GET: Customers/CreateBilling
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateBilling()
         {
             return View();
         }
 
         // GET: Customers/CreateShipping
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateShipping()
         {
             return View();
         }
 
-        // GET: Customers/CreateGeneral
+        // GET: Customers/CreateGeneral'
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateGeneral()
         {
             return View();
         }
 
         // GET: Customers/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +122,7 @@ namespace PetStore.Controllers
         }
 
         // GET: Customers/Details/5
+        [Authorize(Roles = "Customer")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -91,7 +131,7 @@ namespace PetStore.Controllers
             }
 
             var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
-            Customer customer = customers.Where(c => c.Id == id).FirstOrDefault();
+            Customer customer = customers.Where(c => c.Id == id) as Customer;
 
             if (customer == null)
             {
@@ -107,6 +147,8 @@ namespace PetStore.Controllers
         // POST: Customers/CreatePayment
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreatePayment(
             [Bind(Include = "PaymentInformationId,PaymentInformation")] Customer customer)
         {
@@ -117,6 +159,8 @@ namespace PetStore.Controllers
         // POST:Customers/CreateShipping
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateShipping(
             [Bind(Include = "ShippingAddressId,ShippingAddress")] Customer customer)
         {
@@ -129,13 +173,14 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateGeneral(
-            [Bind(Include = "Id,FirstName,LastName,PhoneNumber,EmailAddress")] Customer customer)
+            [Bind(Include = "Id,FirstName,LastName,PhoneNumber")] Customer customer)
         {
             TempData["first"] = customer.FirstName;
             TempData["last"] = customer.LastName;
             TempData["phone"] = customer.PhoneNumber;
-            TempData["email"] = customer.EmailAddress;
              
             return RedirectToAction("CreateShipping");
         }
@@ -143,6 +188,8 @@ namespace PetStore.Controllers
         // POST: Customers/CreateBilling
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateBilling(
             [Bind(Include = "BillingAddressId,BillingAddress")] Customer customer)
         {
@@ -179,6 +226,7 @@ namespace PetStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Customer")]
         public ActionResult Edit(
             [Bind(Include = "Id,FirstName,LastName,PhoneNumber,EmailAddress,BillingAddressId,BillingAddress,ShippingAddressId,ShippingAddress,PaymentInformationId,PaymentInformation")] Customer customer,
             int? id)
@@ -218,6 +266,7 @@ namespace PetStore.Controllers
         }
 
         // GET: Customers/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -235,6 +284,7 @@ namespace PetStore.Controllers
         // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Customer customer = db.Customers.Find(id);
@@ -251,6 +301,7 @@ namespace PetStore.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

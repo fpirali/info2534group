@@ -156,7 +156,7 @@ namespace PetStore.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -164,7 +164,8 @@ namespace PetStore.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     // Redirect to the customers create view
-                    return RedirectToAction("Create", "Customers");
+                    TempData["email"] = user.Email;
+                    return RedirectToAction("CreateGeneral", "Customers");
                 }
                 AddErrors(result);
             }
