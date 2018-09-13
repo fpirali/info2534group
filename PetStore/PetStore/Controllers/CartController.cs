@@ -51,8 +51,8 @@ namespace PetStore.Controllers
         
         public ActionResult Checkout()
         {
-
-            return View();
+            var viewModel = new PaymentInformation();
+            return View(viewModel);
         }
     }
 }
