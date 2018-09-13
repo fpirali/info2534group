@@ -45,6 +45,7 @@ namespace PetStore.Controllers
             Cart.Products.Add(product);
         }
 
+        
         public ActionResult Checkout()
         {
 

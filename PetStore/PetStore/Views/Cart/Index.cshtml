@@ -1,4 +1,5 @@
 ﻿@model PetStore.Models.CartViewModel
+
 @{
     ViewBag.Title = "Home Page";
 }
@@ -11,7 +12,8 @@
 <!-- foreach product in cart
     product.attribute
 -->
-@{ decimal totalPrice = 0;}
+@Html.Partial("productInfo")
+@*@{ decimal totalPrice = 0;}
 @foreach (var item in Model.Cart.Products)
 
 {
@@ -29,5 +31,5 @@
 <form>
     <input type="hidden" name="action" value="Checkout" />
     <input type="submit" value="Checkout" />
-</form>
+</form>*@
 
