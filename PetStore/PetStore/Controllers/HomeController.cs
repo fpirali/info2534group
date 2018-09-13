@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace PetStore.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         protected ApplicationDbContext db { get; set; }
@@ -21,7 +22,11 @@ namespace PetStore.Controllers
         public ActionResult Index()
         {
             var user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            System.Web.HttpContext.Current.Session.Add($"shoppingCart", new Cart() { IsPaid = false, Products = new List<ProductModels>(), UserId = user});
+            if (Session["shoppingCart"] == null)
+            {
+                System.Web.HttpContext.Current.Session.Add($"shoppingCart", new Cart() { IsPaid = false, Products = new List<ProductModels>(), UserId = user });
+            }
+            
             return View();
         }
 
