@@ -1,0 +1,56 @@
+﻿@model PetStore.Models.PaymentInformation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PaymentInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpirationMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpirationMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpirationYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpirationYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardPin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardPin)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

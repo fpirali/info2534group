@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PaymentInformationsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CheckOut.cs" />
     <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -388,6 +390,13 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\IndexPayment.cshtml" />
     <Content Include="Views\Customers\IndexAddress.cshtml" />
+    <Content Include="Views\PaymentInformations\Create.cshtml" />
+    <Content Include="Views\PaymentInformations\Delete.cshtml" />
+    <Content Include="Views\PaymentInformations\Details.cshtml" />
+    <Content Include="Views\PaymentInformations\Edit.cshtml" />
+    <Content Include="Views\PaymentInformations\Index.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Shared\productInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
