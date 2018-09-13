@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace PetStore.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         protected Cart Cart
@@ -22,6 +23,7 @@ namespace PetStore.Controllers
             db = new Models.ApplicationDbContext();
         }
 
+        [AllowAnonymous]
         // GET: Cart
         public ActionResult Index()
         {
@@ -33,6 +35,7 @@ namespace PetStore.Controllers
             return View(viewModel);
         }
 
+        [AllowAnonymous]
         public void Add(int id)
         {
             var product = db.ProductModels.Find(id);

@@ -10,6 +10,7 @@ using PetStore.Models;
 
 namespace PetStore.Controllers
 {
+    [AllowAnonymous]
     public class ProductController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

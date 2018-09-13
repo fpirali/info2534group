@@ -1,35 +1,46 @@
 ﻿@model PetStore.Models.CartViewModel
-
 @{
     ViewBag.Title = "Home Page";
 }
-
 <h2>Shopping Cart</h2>
-
-<h3>Items in Cart: @Model.Cart.Products.Count</h3>
+<h3>
+    Items in Cart: @if (Model.Cart != null)
+    {
+        @Html.Raw(Model.Cart.Products.Count)
+    }
+    else
+    {
+        @Html.Raw("0");
+    }
+</h3>
 <br />
 <br />
 <!-- foreach product in cart
     product.attribute
 -->
-@Html.Partial("productInfo")
-@*@{ decimal totalPrice = 0;}
-@foreach (var item in Model.Cart.Products)
-
+@if (Model.Cart != null)
 {
- <ul class="cart">
-     <li>
-         <strong>Product Name: </strong> @item.Name <br />
-         <strong>Price: </strong>$@item.Price <br />
-         <img src="@item.ImageFilePath" height="100" width="100" />
-         
-     </li>
- </ul>
-        totalPrice = totalPrice + item.Price;
-}
-        <h3 id="totalCart">Total: $@totalPrice</h3>
-<form>
-    <input type="hidden" name="action" value="Checkout" />
-    <input type="submit" value="Checkout" />
-</form>*@
+    decimal totalPrice = 0;
+        foreach (var item in Model.Cart.Products)
 
+        {
+            <ul class="cart">
+                <li>
+                    <strong>Product Name: </strong> @item.Name <br />
+                    <strong>Price: </strong>$@item.Price <br />
+                    <img src="@item.ImageFilePath" height="100" width="100" />
+
+                </li>
+            </ul>
+            totalPrice = totalPrice + item.Price;
+        }
+        <h3 id="totalCart">Total: $@totalPrice</h3>
+        @*<form>
+            <input type="hidden" name="action" value="Checkout" />
+            <input type="submit" value="Checkout" />
+        </form>*@
+        using (Html.BeginForm("Checkout", "Cart", FormMethod.Post, new { id = "checkout-form" }))
+            {
+                <button class="btn btn-success" type="submit">Checkout</button>
+            }
+        }
