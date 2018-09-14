@@ -31,14 +31,15 @@ namespace PetStore.Controllers
             }
             else
             {
-                customers = customers.Where(c => c.Id == id);
+                string email = User.Identity.Name;
+                customers = customers.Where(c => c.EmailAddress == email);
                 return View(customers.ToList());
             }
         }
 
         // GET: Customers address info
         [Authorize(Roles = "Admin,Customer")]
-        public ActionResult IndexAddress(int? id)
+        public ActionResult IndexAddress()
         {
             var customers = db.Customers.Include(c => c.BillingAddress).Include(c => c.ShippingAddress);
 
@@ -48,14 +49,15 @@ namespace PetStore.Controllers
             }
             else
             {
-                customers = customers.Where(c => c.Id == id);
+                string email = User.Identity.Name;
+                customers = customers.Where(c => c.EmailAddress == email);
                 return View(customers.ToList());
             }
         }
 
         // GET: Customers payment info
         [Authorize(Roles = "Admin,Customer")]
-        public ActionResult IndexPayment(int? id)
+        public ActionResult IndexPayment()
         {
             var customers = db.Customers.Include(c => c.PaymentInformation);
 
@@ -65,7 +67,8 @@ namespace PetStore.Controllers
             }
             else
             {
-                customers = customers.Where(c => c.Id == id);
+                string email = User.Identity.Name;
+                customers = customers.Where(c => c.EmailAddress == email);
                 return View(customers.ToList());
             }
         }

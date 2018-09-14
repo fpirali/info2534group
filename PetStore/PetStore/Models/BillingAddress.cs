@@ -25,9 +25,11 @@ namespace PetStore.Models
         public string BillingAddress2 { get; set; }
 
         [Required(ErrorMessage = "Your city of residence is required.")]
+        [Display(Name = "City")]
         public string BillingCity { get; set; }
 
         [Required(ErrorMessage = "Your state of residence is required.")]
+        [Display(Name = "State")]
         public string BillingState { get; set; }
 
         [Required(ErrorMessage = "Your postal code is required.")]
