@@ -1,16 +1,11 @@
 ﻿@model IEnumerable<PetStore.Models.Customer>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Account";
     Layout = "~/Views/Shared/_SubLayout.cshtml";
 }
 
-<h2>Your Account</h2>
-
-<p>
-    @Html.ActionLink("New customer", "CreateGeneral") |
-    @Html.ActionLink("My information", "Details")
-</p>
+<h2>Your Account</h2> <br />
 
 @* this is the table for the customer's basic information *@
 <h2>General Information . . . </h2>
@@ -28,6 +23,10 @@
         <th>
             @Html.DisplayNameFor(model => model.EmailAddress)
         </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -45,6 +44,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EmailAddress)
             </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
         </tr>
     }
 </table>
@@ -69,6 +76,10 @@
         <th>
             @Html.DisplayNameFor(model => model.ShippingAddress.ShippingPostalCode)
         </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -89,6 +100,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ShippingAddress.ShippingPostalCode)
             </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
         </tr>
     }
 </table>
@@ -101,15 +120,13 @@
         <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
         </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -118,15 +135,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentInformation.CardNumber)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationMonth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationYear)
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentInformation.CardPin)
             </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
         </tr>
     }
 </table>
@@ -151,6 +170,10 @@
         <th>
             @Html.DisplayNameFor(model => model.BillingAddress.BillingPostalCode)
         </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -171,6 +194,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BillingAddress.BillingPostalCode)
             </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
         </tr>
     }
 </table>

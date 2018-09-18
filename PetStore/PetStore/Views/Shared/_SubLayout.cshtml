@@ -14,11 +14,19 @@
             <ul class="nav navbar-nav">
                 <li><b>Your Account</b></li>
                 @*@Html.ActionLink("Your Orders", "Orders", "Customers")*@
-                <li>@Html.ActionLink("Login & security", "Index", "Customers")</li>
+                <li>@Html.ActionLink("Login & security", "Index", "Manage")</li>
                 <li>@Html.ActionLink("Your account", "Index", "Customers")</li>
                 <li>@Html.ActionLink("Payment options", "IndexPayment", "Customers")</li>
                 <li>@Html.ActionLink("Your addresses", "IndexAddress", "Customers")</li>
             </ul>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <ul class="nav navbar-nav">
+                    <li><b>Admin Controls</b></li>
+                    <li>@Html.ActionLink("New customer", "Register", "Account")</li>
+                </ul>
+            }
         </div>
 
         <div class="col-md-10">

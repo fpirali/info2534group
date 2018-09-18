@@ -125,7 +125,7 @@ namespace PetStore.Controllers
         }
 
         // GET: Customers/Details/5
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "Admin,Customer")]
         public ActionResult Details(int? id)
         {
             if (id == null)
