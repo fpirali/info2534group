@@ -22,6 +22,13 @@ namespace PetStore.Controllers
             return View(productModels.ToList());
         }
 
+        public ActionResult Sale()
+        {
+            var productModels = db.ProductModels.Where(x => x.OnSale).ToList();
+            return View("Index", productModels);
+        }
+
+
         // GET: Products by filter
         public ActionResult IndexGrid(bool? sale, int? category, int? pet)
         {

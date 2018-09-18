@@ -1,5 +1,4 @@
 ﻿@model PetStore.Models.PaymentInformation
-
 @{ decimal totalPrice = 0;}
 @foreach (var item in Model.Cart.Products)
 
@@ -9,13 +8,9 @@
             <strong>Product Name: </strong> @item.Name <br />
             <strong>Price: </strong>$@item.Price <br />
             <img src="@item.ImageFilePath" height="100" width="100" />
-
         </li>
     </ul>
     totalPrice = totalPrice + item.Price;
 }
 <h3 id="totalCart">Total: $@totalPrice</h3>
-<form>
-    <input type="hidden" name="action" value="Checkout" />
-    <input type="submit" value="Checkout" />
-</form>
+<input type="submit" value="Checkout" class="btn btn-success" />

@@ -16,22 +16,22 @@ namespace PetStore.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "A payment method is required.")]
+        [Required(ErrorMessage = "Credit Card Number is required.")]
         [Display(Name = "Credit card number")]
         [DataType(DataType.CreditCard)]
-        [StringLength(20, ErrorMessage = "Enter a 20-digit credit card number.")]
+        [StringLength(16, ErrorMessage = "Enter a 16-digit credit card number.")]
         public string CardNumber { get; set; }
 
-        //[Required(ErrorMessage = "The month of expiration is required.")]
+        [Required(ErrorMessage = "The month of expiration is required.")]
         [Display(Name = "Month")]
         public int ExpirationMonth { get; set; }
 
-        //[Required(ErrorMessage = "The year of expiration is required.")]
+        [Required(ErrorMessage = "The year of expiration is required.")]
         [Display(Name = "Year")]
         public int ExpirationYear { get; set; }
 
         [Required(ErrorMessage = "The credit card pin is required.")]
-        [Display(Name = "Pin")]
+        [Display(Name = "CCV")]
         [StringLength(3, ErrorMessage = "Enter a 3-digit pin.")]
         public string CardPin { get; set; }
 

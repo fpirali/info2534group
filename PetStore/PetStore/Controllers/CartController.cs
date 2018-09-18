@@ -52,7 +52,29 @@ namespace PetStore.Controllers
         public ActionResult Checkout()
         {
             var viewModel = new PaymentInformation();
+            viewModel.ExpirationYear = DateTime.Now.Year;
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CompleteOrder(PaymentInformation model)
+        {
+            if (ModelState.IsValid)
+            {
+                var vm = new CompleteOrderViewModel()
+                {
+                    Cart = model.Cart
+                };
+
+                Session["shoppingCart"] = new Cart();
+                return View(vm);
+            }
+            else
+            {
+                var viewModel = new PaymentInformation();
+                viewModel.ExpirationYear = DateTime.Now.Year;
+                return View("Checkout", viewModel);
+            }            
         }
     }
 }

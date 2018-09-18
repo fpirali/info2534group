@@ -275,6 +275,7 @@
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CheckOut.cs" />
+    <Compile Include="Models\CompleteOrderViewModel.cs" />
     <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -397,6 +398,7 @@
     <Content Include="Views\PaymentInformations\Index.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Shared\productInfo.cshtml" />
+    <Content Include="Views\Cart\CompleteOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -10,6 +10,11 @@ namespace PetStore.Models
         public ApplicationUser UserId { get; set; }
         public List<ProductModels> Products { get; set; }
         public bool IsPaid { get; set; }
+
+        public Cart()
+        {
+            Products = new List<ProductModels>();
+        }
     }
 
 }
