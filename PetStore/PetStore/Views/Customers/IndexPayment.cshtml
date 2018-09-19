@@ -15,6 +15,12 @@
             @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
         </th>
         @if (User.IsInRole("Admin"))
@@ -28,6 +34,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentInformation.CardNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationYear)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentInformation.CardPin)

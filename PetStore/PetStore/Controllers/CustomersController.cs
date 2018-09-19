@@ -132,10 +132,7 @@ namespace PetStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            var customers = db.Customers.Include(c => c.ShippingAddress).Include(c => c.BillingAddress).Include(c => c.PaymentInformation);
-            Customer customer = customers.Where(c => c.Id == id) as Customer;
-
+            Customer customer = db.Customers.Include(c => c.BillingAddress).Include(c => c.ShippingAddress).Include(c => c.PaymentInformation).Where(c => c.Id == id).FirstOrDefault();
             if (customer == null)
             {
                 return HttpNotFound();
@@ -214,7 +211,7 @@ namespace PetStore.Controllers
             db.BillingAddresses.Add(billing);
             db.ShippingAddresses.Add(shipping);
             db.PaymentInformation.Add(payment);
-            db.Customers.Add(customer);
+            db.Customers.Add(customer); 
 
             // save the changes and redirect to the index
             db.SaveChanges();
@@ -276,7 +273,8 @@ namespace PetStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+
+            Customer customer = db.Customers.Include(c => c.BillingAddress).Include(c => c.ShippingAddress).Include(c => c.PaymentInformation).Where(c => c.Id == id).FirstOrDefault();
             if (customer == null)
             {
                 return HttpNotFound();

@@ -95,12 +95,12 @@
         <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardNumber)
         </th>
-        @*<th>
+        <th>
                 @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationMonth)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PaymentInformation.ExpirationYear)
-            </th>*@
+            </th>
         <th>
             @Html.DisplayNameFor(model => model.PaymentInformation.CardPin)
         </th>
@@ -110,12 +110,12 @@
         <td>
             @Html.DisplayFor(model => model.PaymentInformation.CardNumber)
         </td>
-        @*<td>
-                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationMonth)
+        <td>
+                @Html.DisplayFor(model => model.PaymentInformation.ExpirationMonth)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PaymentInformation.ExpirationYear)
-            </td>*@
+                @Html.DisplayFor(model => model.PaymentInformation.ExpirationYear)
+            </td>
         <td>
             @Html.DisplayFor(model => model.PaymentInformation.CardPin)
         </td>

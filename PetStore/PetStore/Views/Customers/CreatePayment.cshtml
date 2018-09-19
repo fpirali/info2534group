@@ -12,12 +12,9 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Customer</h4>
+        <h4>PaymentInformation</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        @* this is the section for the customer's payment information *@
-        <h2>Payment Method . . . </h2>
         <div class="form-group">
             @Html.LabelFor(model => model.PaymentInformation.CardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -25,30 +22,20 @@
                 @Html.ValidationMessageFor(model => model.PaymentInformation.CardNumber, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @* comment all this stuff out for now *@
-        @{
-        /*
         <div class="form-group">
             @Html.LabelFor(model => model.PaymentInformation.ExpirationMonth, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.PaymentInformation.ExpirationMonth, ViewBag.Months as IEnumerable<SelectListItem>,
-                new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PaymentInformation.ExpirationMonth, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PaymentInformation.ExpirationMonth, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.PaymentInformation.ExpirationYear, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.PaymentInformation.ExpirationYear, ViewBag.Years as IEnumerable<SelectListItem>,
-                new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PaymentInformation.ExpirationYear, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PaymentInformation.ExpirationYear, "", new { @class = "text-danger" })
             </div>
         </div>
-        */
-        }
-
         <div class="form-group">
             @Html.LabelFor(model => model.PaymentInformation.CardPin, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -56,25 +43,9 @@
                 @Html.ValidationMessageFor(model => model.PaymentInformation.CardPin, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @* comment this out for now *@
-        @{
-            /*
-            @* this is where we ask if the billing address is different than the shipping address *@
-            <div class="form-group">
-                @Html.LabelFor(model => model.BillingAddressIsDifferent, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.CheckBoxFor(model => model.BillingAddressIsDifferent, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BillingAddressIsDifferent, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            */
-        }
-        <hr />
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Next" class="btn btn-default" />
+                <input type="submit" value="Submit Order" class="btn btn-success" />
             </div>
         </div>
     </div>
